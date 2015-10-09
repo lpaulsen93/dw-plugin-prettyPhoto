@@ -7,7 +7,7 @@ jQuery(function() {
         if (!img.length) {
             return false;
         };
-        var ppath = "lib/exe/fetch.php?media=";
+        var ppath = JSINFO.plugin_prettyphoto.mediapath;
         if(typeof PRETTYPHOTO_PLUGIN_MEDIAPATH !== "undefined") { 
             ppath = PRETTYPHOTO_PLUGIN_MEDIAPATH;
         };

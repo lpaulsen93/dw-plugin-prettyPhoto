@@ -20,6 +20,7 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
     // register hook
     function register(Doku_Event_Handler $controller) {
         $controller->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', $this, '_handleMeta');
+        $controller->register_hook('DOKUWIKI_STARTED', 'AFTER', $this, '_exportToJSINFO');
     }
 
     /**
@@ -32,6 +33,35 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
             'type'    => 'text/css',
             'href'    => $url,
         );
+    }
+
+    /**
+     * Exports configuration settings to $JSINFO
+     */
+    function _exportToJSINFO(Doku_Event $event, $param) {
+
+        global $JSINFO, $conf;
+
+        // PRETTYPHOTO_PLUGIN_MEDIAPATH
+        $mediapath = $this->getConf('mediapath');
+        if (empty($mediapath)) {
+            switch ($conf['userewrite']) {
+              case 0: // No URL rewriting
+                $mediapath = DOKU_BASE.'lib/exe/fetch.php?media=';
+                break;
+              case 1: // serverside rewiteing eg. .htaccess file
+                $mediapath = DOKU_BASE.'_media/';
+                break;
+              case 2: // DokuWiki rewiteing
+                $mediapath = DOKU_BASE.'lib/exe/fetch.php/';
+                break;
+            }
+        }
+        //msg('PRETTYPHOTO_PLUGIN_MEDIAPATH='.$mediapath ,0);
+
+        $JSINFO['plugin_prettyphoto'] = array(
+                'mediapath'   => $mediapath,
+            );
     }
 
 }
