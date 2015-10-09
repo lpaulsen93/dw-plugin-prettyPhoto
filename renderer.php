@@ -23,8 +23,8 @@ class renderer_plugin_prettyphoto extends Doku_Renderer_xhtml {
         return false;
     }
 
-    public function internalmedia($src, $title=NULL, $align=NULL, $width=NULL,
-                                  $height=NULL, $cache=NULL, $linking=NULL) {
+    public function internalmedia($src, $title=NULL, $align=NULL, $width=NULL, $height=NULL, 
+                                  $cache=NULL, $linking=NULL, $return=false) {
         global $ID;
         list($src,$hash) = explode('#',$src,2);
         resolve_mediaid(getNS($ID),$src, $exists);
