@@ -24,15 +24,35 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
     }
 
     /**
-     * load prettyPhoto.css
+     * load prettyPhoto.css and jquery.prettyPhoto.js
      */
     function _handleMeta(Doku_Event $event, $param) {
-        $url = DOKU_BASE.'lib/plugins/prettyphoto/css/prettyPhoto.css';
+
         $event->data['link'][] = array(
             'rel'     => 'stylesheet',
             'type'    => 'text/css',
-            'href'    => $url,
+            'href'    => DOKU_BASE.'lib/plugins/prettyphoto/css/prettyPhoto.css',
         );
+        $event->data['script'][] = array(
+            'type'    => 'text/javascript',
+            'charset' => 'utf-8',
+            'src'    => DOKU_BASE.'lib/plugins/prettyphoto/js/jquery.prettyPhoto.js',
+            '_data'   => '',
+        );
+
+        // local configuration
+        $src = DOKU_CONF.'prettyphoto.conf.js';
+        if (!file_exists($src)) {
+            $src = dirname(__FILE__).'/prettyphoto.conf.js';
+        }
+        if (is_readable($src)){
+            $event->data['script'][] = array(
+                'type'    => 'text/javascript',
+                'charset' => 'utf-8',
+                'src'    => $src,
+                '_data'   => '',
+            );
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
-/* DOKUWIKI:include js/jquery.prettyPhoto.js */
-/* DOKUWIKI:include ../../../conf/prettyphoto.conf.js */
+/**
+ * DokuWiki PrettyPhoto Plugin
+ */
 jQuery(function() {
      jQuery('a[class=media][href]').each(function() {
         var $self = jQuery(this);
