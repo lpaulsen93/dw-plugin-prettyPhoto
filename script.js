@@ -1,4 +1,4 @@
-/* DOKUWIKI:include jquery.prettyPhoto.js */
+/* DOKUWIKI:include js/jquery.prettyPhoto.js */
 /* DOKUWIKI:include ../../../conf/prettyphoto.conf.js */
 jQuery(function() {
      jQuery('a[class=media][href]').each(function() {
