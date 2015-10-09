@@ -62,10 +62,8 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
 
         global $JSINFO, $conf;
 
-        // PRETTYPHOTO_PLUGIN_MEDIAPATH
-        $mediapath = $this->getConf('mediapath');
-        if (empty($mediapath)) {
-            switch ($conf['userewrite']) {
+        // auto detect PRETTYPHOTO_PLUGIN_MEDIAPATH
+        switch ($conf['userewrite']) {
               case 0: // No URL rewriting
                 $mediapath = DOKU_BASE.'lib/exe/fetch.php?media=';
                 break;
@@ -75,9 +73,7 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
               case 2: // DokuWiki rewiteing
                 $mediapath = DOKU_BASE.'lib/exe/fetch.php/';
                 break;
-            }
         }
-        //msg('PRETTYPHOTO_PLUGIN_MEDIAPATH='.$mediapath ,0);
 
         $JSINFO['plugin_prettyphoto'] = array(
                 'mediapath'   => $mediapath,
