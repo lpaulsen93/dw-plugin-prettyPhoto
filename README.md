@@ -1,78 +1,46 @@
-jQuery prettyPhoto Plugin for DokuWiki
+PrettyPhoto Plugin for DokuWiki
 ======================================
-All documentation for this plugin can be found within this README or at
-<https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto>.
 
-If you install this plugin manually, make sure it is installed in
-`lib/plugins/prettyphoto/` - if the folder is called different it will not
-work!
-
-Please refer to <http://www.dokuwiki.org/plugins> for additional info on
-how to install plugins in DokuWiki.
+This is a fork of [jQuery prettyPhoto Plugin for DokuWiki](https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto) originally developed by Marcus von Appen. It enables a lightbox effect for images embedded as direct links in the wiki page. 
+The [prettyPhoto](https://github.com/scaron/prettyphoto) is a jQuery based lightbox clone.
 
 Usage & Example
 ---------------
-The default configuration of the plugin will provide a overlay box for
-images that are linked directly into the page:
+DokuWiki supports a direct link of image, which brings you directly to the full image in its own page. This plugin will alter the behavior so that the image will be shown instead in a pop-up frame (lightbox-like overlay) when you click the link.
 
-    {{fancyimage.jpg?direct&100|}}
+Adding `?direct` option to the image link will cause the plugin to show the image in a pop-up frame. 
 
-The plugin is comes with an own renderer that automatically replaces
-internal image media links, which refer to the details page of the
-images, with direct links to the images. This is a convenience mechanism
-to save you typing "?direct" for each and every image link. See
-<https://www.dokuwiki.org/images> for further details about image links.
+    {{:wiki:dokuwiki-128.png?direct&48|}}
+    {{:wiki:dokuwiki-128.png?48&direct|}}
 
-You can find a simple example at
-<http://sysfault.org/dokuwiki/projects:dwpretty>
+The pop-up frame will not shown for image links with other option such as `?linkonly` or `?nolink`. The default behaviour is preserved.
+
+    {{:wiki:dokuwiki-128.png?linkonly|}}
+    {{:wiki:dokuwiki-128.png?nolink&48|}}
+    {{:wiki:dokuwiki-128.png?48&nolink|}}
+
+    {{:wiki:dokuwiki-128.png?detail&48|}}
+    {{:wiki:dokuwiki-128.png?48|}}
+
 
 Customization
 -------------
-The main magic happens within `script.js`, which will pull in a
-configuration file `prettyphoto.conf.js`, located in DokuWiki's
-`conf/` folder. Two javascript variables will be tested within the
-configuration file,
+You may customize the behaviour of the prettyPhoto overlay within the `prettyphoto.conf.js` file. It must be located in the plugin directory. You can create it by copying from `prettyphoto.conf.js.example` that will be found in the plugin directory. 
 
-    var PRETTYPHOTO_PLUGIN_MEDIAPATH
+```
+/**
+ * prettyphoto.conf.js.example
+ */
+// disabling social media integration in the pop-up frame
+var PRETTYPHOTO_PLUGIN_PARAMS = { social_tools: '' };
+```
 
-which defines the media item link for the DokuWiki installation. By
-default, DokuWiki uses "lib/exe/fetch.php?media=", your installation
-however might use different links, changed by rewrite rules. If this is
-the case, you should set
+Please refer to <http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/documentation> for further details on customization.
 
-    var PRETTYPHOTO_PLUGIN_MEDIAPATH = "<your media path>";
-
-within `prettyphoto.conf.js`. To customize the behaviour of the
-prettyPhoto overlay, you can use
-
-    var PRETTYPHOTO_PLUGIN_PARAMS
-
-which contains the prettyPhoto configuration to be used (see
-<http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/documentation>
-for further details on customizing), e.g.
-
-    var PRETTYPHOTO_PLUGIN_PARAMS = { social_tools: '' };
-
-for disabling social media integration.
-
-Download
---------
-You can download the plugin by fetching a snapshot of the most current
-source version via
-
-<https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto/downloads#tag-downloads>
-
-Separate downloads are not provided to make the plugin update from within
-DokuWiki as easy as possible.
 
 License
 -------
-The code is given to the Public Domain.
+The contents of `js/`, `images/` and `css/` holders belong to the [prettyPhoto](https://github.com/scaron/prettyphoto) and are seperately licensed under Creative Commons 2.5 or GPLV2 license. See <http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/> for further details. 
 
-Please note that the code of `jquery.prettyPhoto.js` as well as the contents
-of the `images/` folder and `style.css` are not covered by this. They are
-seperately licensed under the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License. See
-<http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/>
-for further details.
+The other code are given to the Public Domain.
 
