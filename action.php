@@ -41,7 +41,7 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
         );
 
         // local configuration
-        if (is_readable(dirname(__FILE__).'/prettyphoto.conf.js') {
+        if (is_readable(dirname(__FILE__).'/prettyphoto.conf.js')) {
             $event->data['script'][] = array(
                 'type'    => 'text/javascript',
                 'charset' => 'utf-8',
