@@ -7,18 +7,17 @@
  *
  * @see also https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto
  */
-// must be run within Dokuwiki
-if(!defined('DOKU_INC')) die();
 
 /**
  * Action component of PrettyPhoto plugin
  *
  * @author  Satoshi Sahara <sahara.satoshi@gmail.com>
  */
-class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
-
+class action_plugin_prettyphoto extends DokuWiki_Action_Plugin
+{
     // register hook
-    function register(Doku_Event_Handler $controller) {
+    public function register(Doku_Event_Handler $controller)
+    {
         $controller->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', $this, '_handleMeta');
         $controller->register_hook('DOKUWIKI_STARTED', 'AFTER', $this, '_exportToJSINFO');
     }
@@ -26,8 +25,8 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
     /**
      * load prettyPhoto.css and jquery.prettyPhoto.js
      */
-    function _handleMeta(Doku_Event $event, $param) {
-
+    public function _handleMeta(Doku_Event $event, $param)
+    {
         $event->data['link'][] = array(
             'rel'     => 'stylesheet',
             'type'    => 'text/css',
@@ -54,8 +53,8 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin {
     /**
      * Exports configuration settings to $JSINFO
      */
-    function _exportToJSINFO(Doku_Event $event, $param) {
-
+    public function _exportToJSINFO(Doku_Event $event, $param)
+    {
         global $JSINFO, $conf;
 
         // auto detect PRETTYPHOTO_PLUGIN_MEDIAPATH

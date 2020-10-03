@@ -1,11 +1,12 @@
 /* ------------------------------------------------------------------------
 	Class: prettyPhoto
 	Use: Lightbox clone for jQuery
+	Copyright: GPLv2 or Creative Commons 2.5 license
 	Author: Stephane Caron (http://www.no-margin-for-errors.com)
-	Version: 3.1.6
+	Version: 3.1.7 - replaced size() with length property
 ------------------------------------------------------------------------- */
 (function($) {
-	$.prettyPhoto = {version: '3.1.6'};
+	$.prettyPhoto = {version: '3.1.7'};
 	
 	$.fn.prettyPhoto = function(pp_settings) {
 		pp_settings = jQuery.extend({
@@ -190,7 +191,7 @@
 			
 			if(settings.hideflash) $('object,embed,iframe[src*=youtube],iframe[src*=vimeo]').css('visibility','hidden'); // Hide the flash
 
-			_checkPosition($(pp_images).size()); // Hide the next/previous links if on first or last images.
+			_checkPosition($(pp_images).length); // Hide the next/previous links if on first or last images.
 		
 			$('.pp_loaderIcon').show();
 		
@@ -208,7 +209,7 @@
 			$pp_overlay.show().fadeTo(settings.animation_speed,settings.opacity);
 
 			// Display the current position
-			$pp_pic_holder.find('.currentTextHolder').text((set_position+1) + settings.counter_separator_label + $(pp_images).size());
+			$pp_pic_holder.find('.currentTextHolder').text((set_position+1) + settings.counter_separator_label + $(pp_images).length);
 
 			// Set the description
 			if(typeof pp_descriptions[set_position] != 'undefined' && pp_descriptions[set_position] != ""){
@@ -241,7 +242,7 @@
 
 						// Preload the neighbour images
 						nextImage = new Image();
-						if(isSet && set_position < $(pp_images).size() -1) nextImage.src = pp_images[set_position + 1];
+						if(isSet && set_position < $(pp_images).length -1) nextImage.src = pp_images[set_position + 1];
 						prevImage = new Image();
 						if(isSet && pp_images[set_position - 1]) prevImage.src = pp_images[set_position - 1];
 
@@ -382,10 +383,10 @@
 			
 			if(direction == 'previous') {
 				set_position--;
-				if (set_position < 0) set_position = $(pp_images).size()-1;
+				if (set_position < 0) set_position = $(pp_images).length -1;
 			}else if(direction == 'next'){
 				set_position++;
-				if(set_position > $(pp_images).size()-1) set_position = 0;
+				if(set_position > $(pp_images).length -1) set_position = 0;
 			}else{
 				set_position=direction;
 			};

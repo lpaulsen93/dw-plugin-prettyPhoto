@@ -7,7 +7,7 @@ desc   jQuery PrettyPhoto Plugin
 url    https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto
 
 # Development 
-date   2015-10-11 [fork version]
+date   2020-10-03 [fork version]
 name   PrettyPhoto plugin
 desc   Pop-up images that are linked directly into the page using prettyPhoto (a jQuery based lightbox clone). All direct images are shown in a pop-up frame instead of the full image in its own page.
 url    https://www.dokuwiki.org/plugin:prettyphoto
