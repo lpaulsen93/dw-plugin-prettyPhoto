@@ -36,6 +36,7 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin
             'type'    => 'text/javascript',
             'charset' => 'utf-8',
             'src'    => DOKU_BASE.'lib/plugins/prettyphoto/js/jquery.prettyPhoto.js',
+            'defer' => 'defer',
             '_data'   => '',
         );
 
