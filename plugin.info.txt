@@ -1,7 +1,7 @@
 base   prettyphoto
 author Marcus von Appen, lpaulsen93
 email  marcus@sysfault.org
-date   2013-05-29
+date   2020-10-04
 name   prettyphoto plugin
 desc   jQuery PrettyPhoto Plugin
 url    https://bitbucket.org/marcusva/dokuwiki-plugin-prettyphoto
