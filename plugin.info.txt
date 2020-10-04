@@ -1,5 +1,5 @@
 base   prettyphoto
-author Marcus von Appen
+author Marcus von Appen, lpaulsen93
 email  marcus@sysfault.org
 date   2013-05-29
 name   prettyphoto plugin

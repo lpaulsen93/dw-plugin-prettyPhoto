@@ -28,21 +28,21 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin
     public function _handleMeta(Doku_Event $event, $param)
     {
         $event->data['link'][] = array(
-            'rel'     => 'stylesheet',
-            'href'    => DOKU_BASE.'lib/plugins/prettyphoto/css/prettyPhoto.css',
+            'rel'  => 'stylesheet',
+            'href' => DOKU_BASE.'lib/plugins/prettyphoto/css/prettyPhoto.css',
         );
         $event->data['script'][] = array(
-            'src'    => DOKU_BASE.'lib/plugins/prettyphoto/js/jquery.prettyPhoto.js',
+            'src'   => DOKU_BASE.'lib/plugins/prettyphoto/js/jquery.prettyPhoto.js',
             'defer' => 'defer',
-            '_data'   => '',
+            '_data' => '',
         );
 
         // local configuration
         if (is_readable(dirname(__FILE__).'/prettyphoto.conf.js')) {
             $event->data['script'][] = array(
-                'src'    => DOKU_BASE.'lib/plugins/prettyphoto/prettyphoto.conf.js',
+                'src'   => DOKU_BASE.'lib/plugins/prettyphoto/prettyphoto.conf.js',
                 'defer' => 'defer',
-                '_data'   => '',
+                '_data' => '',
             );
         }
    }
@@ -56,20 +56,23 @@ class action_plugin_prettyphoto extends DokuWiki_Action_Plugin
 
         // auto detect PRETTYPHOTO_PLUGIN_MEDIAPATH
         switch ($conf['userewrite']) {
-              case 0: // No URL rewriting
+            case 0:
+                // No URL rewriting
                 $mediapath = DOKU_BASE.'lib/exe/fetch.php?media=';
                 break;
-              case 1: // serverside rewiteing eg. .htaccess file
+            case 1:
+                // serverside rewiteing eg. .htaccess file
                 $mediapath = DOKU_BASE.'_media/';
                 break;
-              case 2: // DokuWiki rewiteing
+            case 2:
+                // DokuWiki rewiteing
                 $mediapath = DOKU_BASE.'lib/exe/fetch.php/';
                 break;
         }
 
         $JSINFO['plugin_prettyphoto'] = array(
                 'mediapath'   => $mediapath,
-            );
+        );
     }
 
 }
